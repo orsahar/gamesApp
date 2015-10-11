@@ -65,7 +65,7 @@ router.route('/posts/:id')
             if(err) {
                 return res.send(500, err);
             }
-            return res.json({message: 'removed post with id ' + postId});
+            return res.json({message: 'removved post with id ' + postId});
         });
     })
     .put(function(req, res) {
