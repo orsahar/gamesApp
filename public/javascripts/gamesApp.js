@@ -47,7 +47,7 @@ gamesApp.factory('postService', function($resource) {
 gamesApp.controller('mainController', function(postService, $scope,$http){
     $scope.posts = postService.query();
     $scope.newPost = {created_by: '', name: '',description:'', created_at: '', images: []};
-    console.dir($scope.posts);
+    //console.dir($scope.posts);
     $scope.deletePost = function(index){
         var postToDelete = $scope.posts[$scope.posts.length - index-1];
         $http.delete('api/posts/'+postToDelete._id );

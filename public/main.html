@@ -18,7 +18,11 @@
              ng-class-even="'even'" >
             <input ng-click=" deletePost($index)" class="btn submit-btn pull-right" type="submit" value="X"/>
             <p>{{post.name}}</p>
-            <img hight = "100px" ng-src ="{{ post.images[0]}}"/>
+            <div ng-repeat="image in post.images">
+                <img ng-style="{'height': '200px'}" ng-src ="{{image}}"/>
+            </div>
+
+
             <p>Description : {{post.description}}</p>
             <small ng-model="username">Posted by @{{post.created_by}}</small>
             <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
