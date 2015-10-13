@@ -1,0 +1,27 @@
+<div class="clearfix">
+    <form ng-submit="post()">
+        <h4 ng-model="current_user">Be part of it :</h4>
+        <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter your name"
+                  ng-model="newPost.created_by"></textarea>
+        <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter Game's name"
+                  ng-model="newPost.name"></textarea>
+        <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter description"
+                  ng-model="newPost.description"></textarea>
+        <textarea required class="form-control" maxlength="2000" hight = "38" width = "100" placeholder="Enter links for images"
+                  ng-model="newPost.images"></textarea>
+        <input class="btn submit-btn pull-right" type="submit" value="+Add!"/>
+    </form>
+    <div id="post-stream">
+        <h4>Reviews :</h4>
+
+        <div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'"
+             ng-class-even="'even'" >
+            <input ng-click=" deletePost($index)" class="btn submit-btn pull-right" type="submit" value="X"/>
+            <p>{{post.name}}</p>
+            <img hight = "100px" ng-src ="{{ post.images[0]}}"/>
+            <p>Description : {{post.description}}</p>
+            <small ng-model="username">Posted by @{{post.created_by}}</small>
+            <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+        </div>
+    </div>
+</div>
