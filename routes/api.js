@@ -4,11 +4,11 @@ var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
 //currently anyone is authenticated
-var isAuth = function(req, res, next){
-    return next();
-};
-
-router.use('/posts', isAuth);
+//var isAuth = function(req, res, next){
+//    return next();
+//};
+//
+//router.use('/posts', isAuth);
 
 router.route('/posts')
     .get(function(req, res) {
