@@ -7,10 +7,21 @@
                   ng-model="newPost.name"></textarea>
         <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter description"
                   ng-model="newPost.description"></textarea>
+        <div ng-repeat = "image in images">
+
         <textarea required class="form-control" maxlength="2000" hight = "38" width = "100" placeholder="Enter links for images"
-                  ng-model="newPost.images"></textarea>
+                  ng-model="newPost.images[$index]"></textarea>
+            <button  ng-click = "removeOption($index)" ng-if =" images.length>1">x</button>
+
+
+        </div>
+
         <input class="btn submit-btn pull-right" type="submit" value="+Add!"/>
     </form>
+    <button ng-click = "addOption()">+</button>
+
+
+
     <div id="post-stream">
         <h4>Reviews :</h4>
 

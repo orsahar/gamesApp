@@ -24,6 +24,7 @@ router.route('/posts')
     .post(function(req, res) {
         var newPost = new Post();
         //saving the game's description
+        console.log('im here');
         newPost.description = req.body.description;
         //saving the game's name
         newPost.name = req.body.name;

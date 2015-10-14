@@ -46,7 +46,20 @@ gamesApp.factory('postService', function($resource) {
 
 gamesApp.controller('mainController', function(postService, $scope,$http){
     $scope.posts = postService.query();
+    //set default to 1
+    $scope.counter = 1;
+    $scope.images = [0];
     $scope.newPost = {created_by: '', name: '',description:'', created_at: '', images: []};
+    $scope.addOption = function(){
+         console.log($scope.images);
+         $scope.images.push($scope.counter);
+         $scope.counter ++;
+
+
+    };
+    $scope.removeOption = function(index){
+        $scope.images.splice($scope.images.indexOf(index),1);
+    };
     //console.dir($scope.posts);
     $scope.deletePost = function(index){
         var postToDelete = $scope.posts[$scope.posts.length - index-1];
@@ -54,12 +67,12 @@ gamesApp.controller('mainController', function(postService, $scope,$http){
         $scope.posts = postService.query();
 
     };
-    $scope.updatePost = function(index){
-        var postToUpdate = $scope.posts[$scope.posts.length - index-1];
-        $http.put('api/posts/'+postToUpdate._id,$scope.current_post );
-        $scope.posts = postService.query();
-
-    };
+    //$scope.updatePost = function(index){
+    //    var postToUpdate = $scope.posts[$scope.posts.length - index-1];
+    //    $http.put('api/posts/'+postToUpdate._id,$scope.current_post );
+    //    $scope.posts = postService.query();
+    //
+    //};
     $scope.post = function(){
 
         postService.save($scope.newPost, function() {
