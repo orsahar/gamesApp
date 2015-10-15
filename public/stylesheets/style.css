@@ -29,6 +29,9 @@ a {
 .even {
     background-color: #eceff3;
 }
+.edit{
+    background-color: #FF0000;
+}
 
 .form-auth {
     max-width: 330px;

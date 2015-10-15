@@ -3,13 +3,6 @@ var router = express.Router();
 var mongoose = require('mongoose');
 var Post = mongoose.model('Post');
 
-//currently anyone is authenticated
-//var isAuth = function(req, res, next){
-//    return next();
-//};
-//
-//router.use('/posts', isAuth);
-
 router.route('/posts')
     .get(function(req, res) {
         //getting all posts inside the callback
@@ -37,12 +30,6 @@ router.route('/posts')
             }
             return res.json(post);
         });
-    })
-    //meaningless
-    .delete(function(req, res) {
-    })
-    //meaningless
-    .put(function(req, res) {
     });
 router.route('/posts/:id')
     .get(function(req, res) {
@@ -54,10 +41,6 @@ router.route('/posts/:id')
             return res.json(post);
         });
     })
-    //meaningless
-    .post(function(req, res) {
-    })
-
     .delete(function(req, res) {
 
         var postId = req.params.id;

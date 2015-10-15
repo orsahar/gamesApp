@@ -17,9 +17,9 @@
         </div>
 
         <input class="btn submit-btn pull-right" type="submit" value="+Add!"/>
+        <button class="btn submit-btn pull-left" ng-click = "addOption()">+</button>
+        <hr>
     </form>
-    <button ng-click = "addOption()">+</button>
-
 
 
     <div id="post-stream">
@@ -32,7 +32,7 @@
                 <input ng-click=" deletePost($index)" class="btn submit-btn pull-right" type="submit" value="X"/>
                 <p>{{post.name}}</p>
                 <div ng-repeat="image in post.images">
-                   <img ng-style="{'height': '200px'}" ng-src ="{{image}}"/>
+                   <img ng-style="{'height': '200px'}" ng-src ="{{image}}" ng-show = "image"/>
                 </div>
 
                 <label>edit: <input type="checkbox" ng-model="checked" /></label>
@@ -41,25 +41,25 @@
                 <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
             </div>
 
-            <div ng-if = checked>
+            <div ng-if = checked ng-class= "edit">
                 <hr>
                 <input ng-click=" savePost(post)" class="btn submit-btn pull-right"  value="save"/>
                 <hr>
                 <p>{{post.name}}</p>
-                <div ng-repeat="image in post.images">
-                    <textarea required class="form-control"  hight = "38" width = "100"
-                                     ng-model="post.images[$index]">{{image}}</textarea>
-                    <button  ng-click = "removeOptionFor(post,$index)" ng-if =" post.images.length>1">x</button>
-
-                </div>
-                <input ng-click=" addOptionFor(post)" class="btn submit-btn pull-right" type="submit" value="+"/>
-
 
                 <p>Description :</p>
                 <textarea required class="form-control"  hight = "38" width = "100"
                           ng-model="post.description">{{post.description}}</textarea>
+                <p>images :</p>
+                <div ng-repeat="image in post.images">
+                    <textarea required class="form-control"  hight = "38" width = "100"
+                                     ng-model="post.images[$index]">{{image}}</textarea>
+                    <button  ng-click = "removeOptionFor(post,$index)" class="btn submit-btn pull-left" ng-if = " post.images.length>1">x</button>
 
-                <small ng-model="username">Posted by @{{post.created_by}}</small>
+                </div>
+                <button class="btn submit-btn clearfix" ng-click=" addOptionFor(post)"  >+</button>
+                <hr>
+                <small ng-model="username" >Posted by @{{post.created_by}}</small>
                 <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
             </div>
         </div>
