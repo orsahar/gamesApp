@@ -27,16 +27,36 @@
 
         <div class="post" ng-repeat="post in posts | orderBy:'created_at':true" ng-class-odd="'odd'"
              ng-class-even="'even'" >
-            <input ng-click=" deletePost($index)" class="btn submit-btn pull-right" type="submit" value="X"/>
-            <p>{{post.name}}</p>
-            <div ng-repeat="image in post.images">
-                <img ng-style="{'height': '200px'}" ng-src ="{{image}}"/>
+            <div ng-init="checked=false">
+            <div>
+                <input ng-click=" deletePost($index)" class="btn submit-btn pull-right" type="submit" value="X"/>
+                <p>{{post.name}}</p>
+                <div ng-repeat="image in post.images">
+                   <img ng-style="{'height': '200px'}" ng-src ="{{image}}"/>
+                </div>
+
+                <label>edit: <input type="checkbox" ng-model="checked" /></label>
+                <p>Description : {{post.description}}</p>
+                <small ng-model="username">Posted by @{{post.created_by}}</small>
+                <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
             </div>
 
+            <div ng-if = checked>
+                <hr>
+                <input ng-click=" savePost(post)" class="btn submit-btn pull-right"  value="save"/>
+                <hr>
+                <p>{{post.name}}</p>
+                <div ng-repeat="image in post.images">
+                    <textarea required class="form-control"  hight = "38" width = "100"
+                                     ng-model="post.images[$index]">{{image}}</textarea>                </div>
+                <p>Description :</p>
+                <textarea required class="form-control"  hight = "38" width = "100"
+                          ng-model="post.description">{{post.description}}</textarea>
 
-            <p>Description : {{post.description}}</p>
-            <small ng-model="username">Posted by @{{post.created_by}}</small>
-            <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+                <small ng-model="username">Posted by @{{post.created_by}}</small>
+                <small class="pull-right">{{post.created_at | date:"h:mma 'on' MMM d, y"}}</small>
+            </div>
+        </div>
         </div>
     </div>
 </div>

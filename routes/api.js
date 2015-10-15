@@ -24,7 +24,6 @@ router.route('/posts')
     .post(function(req, res) {
         var newPost = new Post();
         //saving the game's description
-        console.log('im here');
         newPost.description = req.body.description;
         //saving the game's name
         newPost.name = req.body.name;
@@ -71,13 +70,32 @@ router.route('/posts/:id')
     })
     .put(function(req, res) {
         var postId = req.params.id;
+        var union = function(a,b){
+            var c = a;
+            var exist = false;
+            for(var i = 0; i<=b.length;i++){
+                    for(var j = 0;j<= a.length; j++)
+                    {
+                        if(b[i] === a[j])
+                        {
+                            exist = true;
+                        }
+                    }
+                if(!exist)
+                {
+                    c.push(b[i]);
+                }
+                exist = false;
+            }
+            return c;
+        };
         Post.findById(postId, function(err, post){
             if(err)
             {
                 res.status(500).send( err);
             }
             post.description = req.body.description;
-            post.images = post.images.concat(req.body.images);
+            post.images = union(post.images,req.body.images);
             post.save(function(err, post){
                 if(err) {
                     return res.send(500, err);

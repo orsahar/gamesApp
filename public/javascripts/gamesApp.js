@@ -31,11 +31,11 @@ gamesApp.config(function($routeProvider) {
         //    controller: 'authController'
         //})
 
-        ////registration page
-        //.when('/signup', {
-        //    templateUrl: 'register.html',
-        //    controller: 'authController'
-        //})
+        //edit page
+        .when('/edit', {
+            templateUrl: 'edit.html',
+            controller: 'mainController'
+        })
 });
 
 gamesApp.factory('postService', function($resource) {
@@ -46,6 +46,7 @@ gamesApp.factory('postService', function($resource) {
 
 gamesApp.controller('mainController', function(postService, $scope,$http){
     $scope.posts = postService.query();
+    $scope.editMode = false;
     //set default to 1
     $scope.counter = 1;
     $scope.images = [0];
@@ -67,12 +68,12 @@ gamesApp.controller('mainController', function(postService, $scope,$http){
         $scope.posts = postService.query();
 
     };
-    //$scope.updatePost = function(index){
-    //    var postToUpdate = $scope.posts[$scope.posts.length - index-1];
-    //    $http.put('api/posts/'+postToUpdate._id,$scope.current_post );
-    //    $scope.posts = postService.query();
-    //
-    //};
+    $scope.savePost = function(post){
+        console.dir(post);
+        $http.put('api/posts/'+post._id,post);
+        $scope.posts = postService.query();
+
+    };
     $scope.post = function(){
 
         postService.save($scope.newPost, function() {
@@ -82,11 +83,3 @@ gamesApp.controller('mainController', function(postService, $scope,$http){
     };
 });
 
-//gamesApp.controller('postsController',function($scope, $location, $http, $rootScope){
-//    $scope.deletePost = function(){
-//        $http.delete('api/posts/:id',$scope.current_post)
-//    };
-//    $scope.update = function(){
-//        $http.put('api/posts/:id',$scope.current_post )
-//    };
-//});
