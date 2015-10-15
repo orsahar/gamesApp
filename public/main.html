@@ -5,13 +5,13 @@
                   ng-model="newPost.created_by"></textarea>
         <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter Game's name"
                   ng-model="newPost.name"></textarea>
-        <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter description"
+        <textarea required class="form-control" hight = "38" width = "100" placeholder="Enter description"
                   ng-model="newPost.description"></textarea>
         <div ng-repeat = "image in images">
 
         <textarea required class="form-control" maxlength="2000" hight = "38" width = "100" placeholder="Enter links for images"
                   ng-model="newPost.images[$index]"></textarea>
-            <button  ng-click = "removeOption($index)" ng-if =" images.length>1">x</button>
+            <button  class="btn submit-btn pull-left" ng-click = "removeOption($index)" ng-if =" images.length>1">x</button>
 
 
         </div>
@@ -45,8 +45,9 @@
                 <hr>
                 <input ng-click=" savePost(post)" class="btn submit-btn pull-right"  value="save"/>
                 <hr>
-                <p>{{post.name}}</p>
-
+                <p>Name</p>
+                 <textarea required class="form-control"  hight = "38" width = "100"
+                           ng-model="post.name">{{post.name}}</textarea>
                 <p>Description :</p>
                 <textarea required class="form-control"  hight = "38" width = "100"
                           ng-model="post.description">{{post.description}}</textarea>

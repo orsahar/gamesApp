@@ -79,6 +79,7 @@ router.route('/posts/:id')
             }
             post.description = req.body.description;
             //post.images = union(post.images,req.body.images);
+            post.name = req.body.name;
             post.images = req.body.images
             post.save(function(err, post){
                 if(err) {
