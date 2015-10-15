@@ -1,6 +1,6 @@
 <div class="clearfix">
     <form ng-submit="post()">
-        <h4 ng-model="current_user">Be part of it :</h4>
+        <h4>Be part of it :</h4>
         <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter your name"
                   ng-model="newPost.created_by"></textarea>
         <textarea required class="form-control" maxlength="20" hight = "38" width = "100" placeholder="Enter Game's name"
@@ -48,7 +48,13 @@
                 <p>{{post.name}}</p>
                 <div ng-repeat="image in post.images">
                     <textarea required class="form-control"  hight = "38" width = "100"
-                                     ng-model="post.images[$index]">{{image}}</textarea>                </div>
+                                     ng-model="post.images[$index]">{{image}}</textarea>
+                    <button  ng-click = "removeOptionFor(post,$index)" ng-if =" post.images.length>1">x</button>
+
+                </div>
+                <input ng-click=" addOptionFor(post)" class="btn submit-btn pull-right" type="submit" value="+"/>
+
+
                 <p>Description :</p>
                 <textarea required class="form-control"  hight = "38" width = "100"
                           ng-model="post.description">{{post.description}}</textarea>

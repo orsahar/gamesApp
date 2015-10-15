@@ -65,7 +65,7 @@ router.route('/posts/:id')
             if(err) {
                 return res.send(500, err);
             }
-            return res.json({message: 'removved post with id ' + postId});
+            return res.json({message: 'removed post with id ' + postId});
         });
     })
     .put(function(req, res) {
@@ -95,7 +95,8 @@ router.route('/posts/:id')
                 res.status(500).send( err);
             }
             post.description = req.body.description;
-            post.images = union(post.images,req.body.images);
+            //post.images = union(post.images,req.body.images);
+            post.images = req.body.images
             post.save(function(err, post){
                 if(err) {
                     return res.send(500, err);

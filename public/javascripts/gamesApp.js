@@ -58,8 +58,16 @@ gamesApp.controller('mainController', function(postService, $scope,$http){
 
 
     };
+    $scope.addOptionFor= function(post){
+
+        post.images.push('');
+        console.dir(post.images);
+    };
     $scope.removeOption = function(index){
         $scope.images.splice($scope.images.indexOf(index),1);
+    };
+    $scope.removeOptionFor = function(post,index){
+        post.images.splice($scope.images.indexOf(index),1);
     };
     //console.dir($scope.posts);
     $scope.deletePost = function(index){
@@ -69,7 +77,6 @@ gamesApp.controller('mainController', function(postService, $scope,$http){
 
     };
     $scope.savePost = function(post){
-        console.dir(post);
         $http.put('api/posts/'+post._id,post);
         $scope.posts = postService.query();
 
